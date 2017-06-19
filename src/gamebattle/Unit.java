@@ -4,7 +4,8 @@ abstract class Unit {
 
     String name;
     int hp;
-    int dmg;
+    //int dmg;
+    Damage dmg;
 
     public String getName() {
         return name;
@@ -23,7 +24,9 @@ abstract class Unit {
     }
 
     public int getDmg() {
+        Damage dmg = new Damage();
         return dmg;
+        //return dmg;
     }
 
     public void setDmg(int dmg) {
@@ -37,7 +40,7 @@ abstract class Unit {
         unit.reAttack(this);
     }
 
-    // TODO: replace reAttack(Unit unit) method
+    // TODO: replace attack(Unit unit) method
     public void attack(Unit unit, Damage damage) {
         System.out.println(this.getName() + " attacks " + unit.getName());
         unit.hp = unit.hp - this.dmg;
