@@ -1,11 +1,25 @@
 package gamebattle;
 
-public class Warevolf extends Unit {
+public class Werevolf extends Unit {
 
-    Warevolf() {
-        this.name = "Warevolf";
-        this.hp = 80;
-        Damage dmg = new PowerDamage(10);
+    Werevolf() {
+        this.name = "Werevolf";
+        this.healthPoints = 80;
+        this.damage = 10;
+    }
+
+    private State state;
+
+//    public Context() {
+//        state = null;
+//    }
+
+    public void setState(State state) {
+        this.state = state;
+    }
+
+    public State getState() {
+        return state;
     }
 
 //    beHuman(this) {

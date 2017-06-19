@@ -4,8 +4,8 @@ public class Wizard extends Unit {
 
     Wizard() {
         this.name = "Wizard";
-        this.hp = 50;
-        Damage dmg = new MagicDamage(200);
+        this.healthPoints = 50;
+        this.damage = 200;
     }
 
 }
