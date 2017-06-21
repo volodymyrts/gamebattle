@@ -10,7 +10,7 @@ class Rogue extends Unit {
     @Override
     public void attack(Unit enemy) {
         System.out.println(this.getName() + " attacks " + enemy.getName());
-        enemy.takeDamage(this.getDamage());
+        enemy.takeDamage(this.state.getDamage());
     }
 
 }
