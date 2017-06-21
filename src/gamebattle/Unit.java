@@ -32,23 +32,18 @@ abstract class Unit {
     }
 
     public void attack(Unit enemy) {
-        takeDamage(enemy);
+        System.out.println(this.getName() + " attacks " + enemy.getName());
+        enemy.takeDamage(this.getDamage());
         enemy.counterAttack(this);
-//        System.out.println(this.getName() + " attacks " + unit.getName() + " with " + this.getDmg());
-//        unit.hp = unit.hp - this.dmg;
-//        System.out.println(unit.getName() + " has " + unit.getHp() + " hp left");
-//        unit.reAttack(this);
+
     }
 
-    public void takeDamage(Unit enemy) {
-        enemy.healthPoints -= damage;
-        System.out.println(this.name + " attacks " + enemy.getName() + " and gives " + this.damage + " damage");
+    public void takeDamage(int damage) {
+        this.healthPoints -= damage;
+        System.out.println(this.getName() + " takes " + damage + " damage");
     }
 
-    public void takeHalfDamage(Unit enemy) {
-        enemy.healthPoints -= damage/2;
-        System.out.println(this.name + " attacks " + enemy.getName() + " and gives " + this.damage/2 + " damage");
-    }
+
 
     public void takeMagicDamage(Unit enemy) {
         healthPoints -= damage;
@@ -56,14 +51,14 @@ abstract class Unit {
     }
     
     public void counterAttack(Unit atacker) {
-
-            this.takeHalfDamage(atacker);
+        System.out.println(this.getName() + " counterAttacks " + atacker.getName());
+        atacker.takeDamage(this.getDamage()/2);
 
     }
     
     @Override
     public String toString() {
-        return "Unit{" + "name=" + name + ", hp=" + healthPoints + ", dmg=" + damage + "]";
+        return "Unit: " + name + ", hp=" + healthPoints + ", dmg=" + damage + "";
     }
     
 }
