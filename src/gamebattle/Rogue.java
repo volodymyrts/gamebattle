@@ -3,9 +3,8 @@ package gamebattle;
 class Rogue extends Unit {
 
     Rogue() {
+        super(80, 10);
         this.name = "Rogue";
-        this.setHealthPoints(80);
-        this.setDamage(10);
     }
 
     @Override

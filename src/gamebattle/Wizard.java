@@ -3,9 +3,8 @@ package gamebattle;
 public class Wizard extends Unit {
 
     Wizard() {
+        super(50, 200);
         this.name = "Wizard";
-        this.state.setHealthPoints(50);
-        this.state.setDamage(200);
     }
 
 }

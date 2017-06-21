@@ -3,9 +3,8 @@ package gamebattle;
 public class Berserker extends Unit {
     
     Berserker() {
+        super(110, 16);
         this.name = "Berserker";
-        this.state.setHealthPoints(110);
-        this.state.setDamage(16);
     }
     
 }

@@ -3,9 +3,8 @@ package gamebattle;
 public class Vampire extends Unit {
 
     Vampire() {
+        super(110, 12);
         this.name = "Vampire";
-        this.state.setHealthPoints(110);
-        this.state.setDamage(12);
     }
 
 }

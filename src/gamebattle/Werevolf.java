@@ -3,9 +3,8 @@ package gamebattle;
 public class Werevolf extends Unit {
 
     Werevolf() {
+        super(80, 10);
         this.name = "Werevolf";
-        this.state.setHealthPoints(80);
-        this.state.setDamage(10);
     }
 
     public void transform(Werevolf werevolf) {

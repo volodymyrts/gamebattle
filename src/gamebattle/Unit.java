@@ -7,6 +7,10 @@ abstract class Unit {
     //int healthPoints;
     //int damage;
 
+    Unit(int healthPoints, int damage) {
+        state.setHealthPoints(healthPoints);
+        state.setDamage(damage);
+    }
 
     public String getName() {
         return name;

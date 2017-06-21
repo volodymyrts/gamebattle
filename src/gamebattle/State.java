@@ -9,16 +9,16 @@ public class State {
         return healthPoints;
     }
 
-    public void setHealthPoints(int hp) {
-        this.healthPoints = hp;
+    public void setHealthPoints(int healthPoints) {
+        this.healthPoints = healthPoints;
     }
 
     public int getDamage() {
         return damage;
     }
 
-    public void setDamage(int dmg) {
-        this.damage = dmg;
+    public void setDamage(int damage) {
+        this.damage = damage;
     }
 
 }
