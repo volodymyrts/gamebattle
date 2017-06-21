@@ -1,24 +1,15 @@
 package gamebattle;
 
-public class Werevolf extends Unit implements IWerevolfState {
+public class Werevolf extends Unit {
 
-    IWerevolfState stateOfWerevolf;
-
-    Werevolf(IWerevolfState stateOfWerevolf) {
-        stateOfWerevolf = new StateHuman();
+    Werevolf() {
         this.name = "Werevolf";
-        this.healthPoints = 80;
-        this.damage = 10;
+        this.state.setHealthPoints(80);
+        this.state.setDamage(10);
     }
 
     public void transform(Werevolf werevolf) {
         System.out.println("tranformed");
     }
-
-//    public void transform(IWerevolfState werevolf) {
-//        System.out.println("transforming...");
-//
-//    };
-
 
 }

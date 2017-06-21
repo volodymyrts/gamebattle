@@ -4,8 +4,8 @@ public class Berserker extends Unit {
     
     Berserker() {
         this.name = "Berserker";
-        this.healthPoints = 110;
-        this.damage = 16;
+        this.state.setHealthPoints(110);
+        this.state.setDamage(16);
     }
     
 }

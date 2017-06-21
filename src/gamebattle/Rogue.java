@@ -4,8 +4,8 @@ class Rogue extends Unit {
 
     Rogue() {
         this.name = "Rogue";
-        this.healthPoints = 80;
-        this.damage = 10;
+        this.setHealthPoints(80);
+        this.setDamage(10);
     }
 
     @Override

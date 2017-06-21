@@ -3,8 +3,9 @@ package gamebattle;
 abstract class Unit {
 
     String name;
-    int healthPoints;
-    int damage;
+    State state;
+    //int healthPoints;
+    //int damage;
 
 
     public String getName() {
@@ -16,19 +17,19 @@ abstract class Unit {
     }
 
     public int getHealthPoints() {
-        return healthPoints;
+        return state.getHealthPoints();
     }
 
     public void setHealthPoints(int healthPoints) {
-        this.healthPoints = healthPoints;
+        this.state.setHealthPoints(healthPoints);
     }
 
     public int getDamage() {
-        return damage;
+        return this.state.getDamage();
     }
 
     public void setDamage(int damage) {
-        this.damage = damage;
+        this.state.setDamage(damage);
     }
 
     public void attack(Unit enemy) {
@@ -39,26 +40,26 @@ abstract class Unit {
     }
 
     public void takeDamage(int damage) {
-        this.healthPoints -= damage;
+        this.state.setHealthPoints(this.state.getHealthPoints() - damage);
         System.out.println(this.getName() + " takes " + damage + " damage");
     }
 
 
 
     public void takeMagicDamage(Unit enemy) {
-        healthPoints -= damage;
-        System.out.println(this.name + " attacks " + enemy.getName() + " and gives " + this.damage + " magic damage");
+        //healthPoints -= damage;
+        //System.out.println(this.name + " attacks " + enemy.getName() + " and gives " + this.damage + " magic damage");
     }
     
     public void counterAttack(Unit atacker) {
         System.out.println(this.getName() + " counterAttacks " + atacker.getName());
-        atacker.takeDamage(this.getDamage()/2);
+        atacker.takeDamage(this.state.getDamage()/2);
 
     }
     
     @Override
     public String toString() {
-        return "Unit: " + name + ", hp=" + healthPoints + ", dmg=" + damage + "";
+        return "Unit: " + name + ", hp=" + state.getHealthPoints() + ", dmg=" + state.getDamage() + "";
     }
     
 }

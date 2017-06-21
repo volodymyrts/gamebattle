@@ -4,8 +4,8 @@ public class Vampire extends Unit {
 
     Vampire() {
         this.name = "Vampire";
-        this.healthPoints = 110;
-        this.damage = 12;
+        this.state.setHealthPoints(110);
+        this.state.setDamage(12);
     }
 
 }
