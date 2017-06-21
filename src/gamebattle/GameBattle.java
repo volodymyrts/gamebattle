@@ -7,10 +7,11 @@ public class GameBattle {
         Unit soldier = new Soldier();
         Unit rogue = new Rogue();
         //Unit berserker = new Berserker();
+        //Unit werevolf = new Werevolf(new StateHuman());
 
         System.out.println(soldier);
         System.out.println(rogue);
-        //System.out.println(berserker);
+        //System.out.println(werevolf);
         
         System.out.println();
         System.out.println("--- BATTLE BEGINS ---");
@@ -24,11 +25,12 @@ public class GameBattle {
         System.out.println();
         rogue.attack(soldier);
 
-//        soldier.attack(berserker);
+//        werevolf.attack(soldier);
 //        System.out.println();
-//        rogue.attack(berserker);
+//        werevolf.
+//        werevolf.attack(rogue);
 //        System.out.println();
-//
+
 //        berserker.attack(rogue);
 //        System.out.println();
 //        berserker.attack(soldier);

@@ -1,33 +1,24 @@
 package gamebattle;
 
-public class Werevolf extends Unit {
+public class Werevolf extends Unit implements IWerevolfState {
 
-    Werevolf() {
+    IWerevolfState stateOfWerevolf;
+
+    Werevolf(IWerevolfState stateOfWerevolf) {
+        stateOfWerevolf = new StateHuman();
         this.name = "Werevolf";
         this.healthPoints = 80;
         this.damage = 10;
     }
 
-    private State state;
-
-//    public Context() {
-//        state = null;
-//    }
-
-    public void setState(State state) {
-        this.state = state;
+    public void transform(Werevolf werevolf) {
+        System.out.println("tranformed");
     }
 
-    public State getState() {
-        return state;
-    }
+//    public void transform(IWerevolfState werevolf) {
+//        System.out.println("transforming...");
+//
+//    };
 
-//    beHuman(this) {
-//
-//    }
-//
-//    beWarevolf(this) {
-//
-//    }
 
 }

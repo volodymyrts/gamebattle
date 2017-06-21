@@ -15,11 +15,11 @@ abstract class Unit {
         this.name = name;
     }
 
-    public int getHp() {
+    public int getHealthPoints() {
         return healthPoints;
     }
 
-    public void setHp(int hp) {
+    public void setHealthPoints(int healthPoints) {
         this.healthPoints = healthPoints;
     }
 
@@ -27,12 +27,13 @@ abstract class Unit {
         return damage;
     }
 
-    public void setDmg(int dmg) {
+    public void setDamage(int damage) {
         this.damage = damage;
     }
 
     public void attack(Unit enemy) {
         takeDamage(enemy);
+        enemy.counterAttack(this);
 //        System.out.println(this.getName() + " attacks " + unit.getName() + " with " + this.getDmg());
 //        unit.hp = unit.hp - this.dmg;
 //        System.out.println(unit.getName() + " has " + unit.getHp() + " hp left");
@@ -40,25 +41,24 @@ abstract class Unit {
     }
 
     public void takeDamage(Unit enemy) {
-        healthPoints -= damage;
+        enemy.healthPoints -= damage;
         System.out.println(this.name + " attacks " + enemy.getName() + " and gives " + this.damage + " damage");
+    }
+
+    public void takeHalfDamage(Unit enemy) {
+        enemy.healthPoints -= damage/2;
+        System.out.println(this.name + " attacks " + enemy.getName() + " and gives " + this.damage/2 + " damage");
     }
 
     public void takeMagicDamage(Unit enemy) {
         healthPoints -= damage;
-    }
-
-    // TODO: replace attack(Unit unit) method
-    public void attack(Unit unit, int damage) {
-        System.out.println(this.getName() + " attacks " + unit.getName());
-        unit.healthPoints = unit.healthPoints - this.damage;
-        System.out.println(unit.getName() + " gets " + unit.getDamage());
+        System.out.println(this.name + " attacks " + enemy.getName() + " and gives " + this.damage + " magic damage");
     }
     
-    public void reAttack(Unit unit) {
-        System.out.println(this.getName() + " reattacks " + unit.getName() + " with " + this.getDamage()/2);
-        unit.healthPoints = unit.healthPoints - this.damage/2;
-        System.out.println(unit.getName() + " has " + unit.getHp() + " hp left");
+    public void counterAttack(Unit atacker) {
+
+            this.takeHalfDamage(atacker);
+
     }
     
     @Override
