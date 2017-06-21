@@ -3,7 +3,7 @@ package gamebattle;
 public class Werevolf extends Unit {
 
     Werevolf() {
-        super(80, 10);
+        super(80, 10, "Power");
         this.name = "Werevolf";
     }
 

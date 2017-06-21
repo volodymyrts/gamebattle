@@ -6,13 +6,16 @@ public class GameBattle {
 
         Unit soldier = new Soldier();
         Unit rogue = new Rogue();
-        //Unit berserker = new Berserker();
-        //Unit werevolf = new Werevolf(new StateHuman());
+        Unit berserker = new Berserker();
+        Unit werevolf = new Werevolf();
+        Unit vampire = new Vampire();
 
         System.out.println(soldier);
         System.out.println(rogue);
-        //System.out.println(werevolf);
-        
+        System.out.println(berserker);
+        System.out.println(werevolf);
+        System.out.println(vampire);
+
         System.out.println();
         System.out.println("--- BATTLE BEGINS ---");
         
@@ -21,26 +24,33 @@ public class GameBattle {
         System.out.println();
         rogue.attack(soldier);
         System.out.println();
-        soldier.attack(rogue);
+        soldier.attack(berserker);
         System.out.println();
-        rogue.attack(soldier);
+        rogue.attack(berserker);
+        System.out.println();
+        werevolf.attack(soldier);
+        System.out.println();
+        werevolf.attack(berserker);
+        System.out.println();
 
-//        werevolf.attack(soldier);
-//        System.out.println();
-//        werevolf.
-//        werevolf.attack(rogue);
-//        System.out.println();
+        berserker.attack(rogue);
+        System.out.println();
+        berserker.attack(soldier);
+        System.out.println();
 
-//        berserker.attack(rogue);
-//        System.out.println();
-//        berserker.attack(soldier);
-//        System.out.println();
+        vampire.attack(berserker);
+        System.out.println();
+        berserker.attack(vampire);
+        System.out.println();
 
         System.out.println("--- END OF BATTLE ---");
         System.out.println();
 
         System.out.println(soldier);
         System.out.println(rogue);
+        System.out.println(berserker);
+        System.out.println(werevolf);
+        System.out.println(vampire);
 
     }
     
