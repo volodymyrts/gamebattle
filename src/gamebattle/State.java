@@ -2,28 +2,14 @@ package gamebattle;
 
 public class State {
 
-    private int healthPoints;
-    private int damage;
+    public int healthPoints;
+    public int damage;
+    public int powerDamage;
 
     State() {
-        this.setHealthPoints(0);
-        this.setDamage(0);
-    }
-
-    public int getHealthPoints() {
-        return healthPoints;
-    }
-
-    public void setHealthPoints(int healthPoints) {
-        this.healthPoints = healthPoints;
-    }
-
-    public int getDamage() {
-        return damage;
-    }
-
-    public void setDamage(int damage) {
-        this.damage = damage;
+        healthPoints = 0;
+        damage = 0;
+        powerDamage = 0;
     }
 
 }

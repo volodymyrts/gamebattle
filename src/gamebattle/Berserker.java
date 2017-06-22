@@ -3,7 +3,7 @@ package gamebattle;
 public class Berserker extends Unit {
     
     Berserker() {
-        super(110, 16, "Power");
+        super(110, 16, 0);
         this.name = "Berserker";
     }
 
