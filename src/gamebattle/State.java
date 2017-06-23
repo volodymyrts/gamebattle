@@ -3,12 +3,12 @@ package gamebattle;
 public class State {
 
     private int healthPoints;
-    private int damage;
+    private int physicalDamage;
     private int magicDamage;
 
-    State(int healthPoints, int damage, int magicDamage) {
+    State(int healthPoints, int physicalDamage, int magicDamage) {
         this.healthPoints = healthPoints;
-        this.damage = damage;
+        this.physicalDamage = physicalDamage;
         this.magicDamage = magicDamage;
     }
 
@@ -20,12 +20,12 @@ public class State {
         this.healthPoints = healthPoints;
     }
 
-    public int getDamage() {
-        return damage;
+    public int getPhysicalDamage() {
+        return physicalDamage;
     }
 
-    public void setDamage(int damage) {
-        this.damage = damage;
+    public void setPhysicalDamage(int physicalDamage) {
+        this.physicalDamage = physicalDamage;
     }
 
     public int getMagicDamage() {

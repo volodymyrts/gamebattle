@@ -24,30 +24,36 @@ abstract class Unit {
 
     public void attack(Unit enemy) {
         System.out.println(getName() + " attacks " + enemy.getName());
-        enemy.takeDamage(state.getDamage());
-        enemy.takeMagicDamage(state.getMagicDamage());
+        enemy.takeDamage(state.getPhysicalDamage(), state.getMagicDamage());
         enemy.counterAttack(this);
     }
 
     public void counterAttack(Unit attacker) {
         System.out.println(getName() + " counterAttacks " + attacker.getName());
-        attacker.takeDamage(state.getDamage()/2);
+        attacker.takePhysicalDamage(state.getPhysicalDamage()/2);
         attacker.takeMagicDamage(state.getMagicDamage()/2);
     }
 
-    public void takeDamage(int damage) {
-        state.setHealthPoints(state.getHealthPoints() - damage);
-        System.out.println(getName() + " takes " + damage + " damage");
+    public void takeDamage(int physicDamage, int magicDamage) {
+        takePhysicalDamage(physicDamage);
+        takeMagicDamage(magicDamage);
+    }
+
+    public void takePhysicalDamage(int physicalDamage) {
+        state.setHealthPoints(state.getHealthPoints() - physicalDamage);
+        System.out.println(getName() + " takes " + physicalDamage + " physic damage");
     }
 
     public void takeMagicDamage(int magicDamage) {
         state.setHealthPoints(state.getHealthPoints() - magicDamage);
         System.out.println(getName() + " takes " + magicDamage + " magic damage");
     }
-    
+
+    public void healthUp() {}
+
     @Override
     public String toString() {
-        return "Unit: " + name + ", hp=" + state.getHealthPoints() + ", dmg=" + state.getDamage() + ", p.dmg=" + state.getMagicDamage();
+        return "Unit: " + name + ", hp=" + state.getHealthPoints() + ", pDmg=" + state.getPhysicalDamage() + ", mDmg=" + state.getMagicDamage();
     }
     
 }

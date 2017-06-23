@@ -12,14 +12,14 @@ public class Werewolf extends Unit {
 
     @Override
     public void transform() {
-        if (human == true) {
+        if (human) {
             human = false;
             state.setHealthPoints(state.getHealthPoints()*2);
-            state.setDamage(16);
+            state.setPhysicalDamage(16);
         } else {
             human = true;
             state.setHealthPoints(state.getHealthPoints()/2);
-            state.setDamage(10);
+            state.setPhysicalDamage(10);
         }
         System.out.println("tranformed");
     }

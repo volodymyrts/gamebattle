@@ -30,7 +30,11 @@ public class GameBattle {
         System.out.println();
         werewolf.attack(soldier);
         System.out.println();
+
+        System.out.println(werewolf);
         werewolf.transform();
+        System.out.println(werewolf);
+
         System.out.println();
         werewolf.attack(berserker);
         System.out.println();
