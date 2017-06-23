@@ -5,19 +5,14 @@ abstract class Unit {
     public String name;
     public State state;
 
-    private static int MAX_HEALTH_POINTS;
+    private int MAX_HEALTH_POINTS;
 
-    Unit(int healthPoints, int damage, int powerDamage) {
-        this.state = new State();
-        state.healthPoints = healthPoints;
-        state.damage = damage;
-        state.powerDamage = powerDamage;
+    Unit(int healthPoints, int damage, int magicDamage) {
+        state = new State(healthPoints, damage, magicDamage);
         MAX_HEALTH_POINTS = healthPoints;
     }
 
-    public void transform(){
-
-    };
+    public void transform(){};
 
     public String getName() {
         return name;
@@ -28,32 +23,31 @@ abstract class Unit {
     }
 
     public void attack(Unit enemy) {
-        System.out.println(this.getName() + " attacks " + enemy.getName());
-        enemy.takeDamage(this.state.damage);
-        enemy.takeMagicDamage(this.state.powerDamage);
+        System.out.println(getName() + " attacks " + enemy.getName());
+        enemy.takeDamage(state.getDamage());
+        enemy.takeMagicDamage(state.getMagicDamage());
         enemy.counterAttack(this);
     }
 
     public void counterAttack(Unit attacker) {
-        System.out.println(this.getName() + " counterAttacks " + attacker.getName());
-        attacker.takeDamage(this.state.damage/2);
-        attacker.takeMagicDamage(this.state.powerDamage/2);
+        System.out.println(getName() + " counterAttacks " + attacker.getName());
+        attacker.takeDamage(state.getDamage()/2);
+        attacker.takeMagicDamage(state.getMagicDamage()/2);
     }
 
     public void takeDamage(int damage) {
-        this.state.healthPoints = this.state.healthPoints - damage;
-        System.out.println(this.getName() + " takes " + damage + " damage");
+        state.setHealthPoints(state.getHealthPoints() - damage);
+        System.out.println(getName() + " takes " + damage + " damage");
     }
 
     public void takeMagicDamage(int magicDamage) {
-        this.state.healthPoints = this.state.healthPoints - magicDamage;
-        //this.takeDamage(magicDamage);
-        System.out.println(this.getName() + " takes " + magicDamage + " magic damage");
+        state.setHealthPoints(state.getHealthPoints() - magicDamage);
+        System.out.println(getName() + " takes " + magicDamage + " magic damage");
     }
     
     @Override
     public String toString() {
-        return "Unit: " + name + ", hp=" + this.state.healthPoints + ", dmg=" + this.state.damage + ", p.dmg=" + this.state.powerDamage;
+        return "Unit: " + name + ", hp=" + state.getHealthPoints() + ", dmg=" + state.getDamage() + ", p.dmg=" + state.getMagicDamage();
     }
     
 }

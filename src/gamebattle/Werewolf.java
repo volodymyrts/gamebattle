@@ -6,24 +6,27 @@ public class Werewolf extends Unit {
 
     Werewolf() {
         super(80, 10, 0);
-        this.name = "Werewolf";
-        this.human = true;
+        name = "Werewolf";
+        human = true;
     }
 
     @Override
     public void transform() {
         if (human == true) {
             human = false;
-            state.healthPoints *= 2;
-            state.damage *= 2;
-            state.powerDamage *= 2;
+            state.setHealthPoints(state.getHealthPoints()*2);
+            state.setDamage(16);
         } else {
             human = true;
-            state.healthPoints /= 2;
-            state.damage /= 2;
-            state.powerDamage /= 2;
+            state.setHealthPoints(state.getHealthPoints()/2);
+            state.setDamage(10);
         }
         System.out.println("tranformed");
+    }
+
+    @Override
+    public void takeMagicDamage(int magicDamage) {
+        super.takeMagicDamage(magicDamage*2);
     }
 
 }

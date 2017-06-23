@@ -2,14 +2,38 @@ package gamebattle;
 
 public class State {
 
-    public int healthPoints;
-    public int damage;
-    public int powerDamage;
+    private int healthPoints;
+    private int damage;
+    private int magicDamage;
 
-    State() {
-        healthPoints = 0;
-        damage = 0;
-        powerDamage = 0;
+    State(int healthPoints, int damage, int magicDamage) {
+        this.healthPoints = healthPoints;
+        this.damage = damage;
+        this.magicDamage = magicDamage;
+    }
+
+    public int getHealthPoints() {
+        return healthPoints;
+    }
+
+    public void setHealthPoints(int healthPoints) {
+        this.healthPoints = healthPoints;
+    }
+
+    public int getDamage() {
+        return damage;
+    }
+
+    public void setDamage(int damage) {
+        this.damage = damage;
+    }
+
+    public int getMagicDamage() {
+        return magicDamage;
+    }
+
+    public void setMagicDamage(int magicDamage) {
+        this.magicDamage = magicDamage;
     }
 
 }
