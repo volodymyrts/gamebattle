@@ -44,10 +44,18 @@ public class GameBattle {
         berserker.attack(soldier);
         System.out.println();
 
-        vampire.attack(berserker);
+        vampire.attack(soldier);
         System.out.println();
-        berserker.attack(vampire);
+        vampire.attack(soldier);
         System.out.println();
+        vampire.attack(soldier);
+        System.out.println();
+        vampire.attack(soldier);
+        System.out.println();
+        vampire.attack(soldier);
+        System.out.println();
+//        berserker.attack(vampire);
+//        System.out.println();
 
         System.out.println("--- END OF BATTLE ---");
         System.out.println();

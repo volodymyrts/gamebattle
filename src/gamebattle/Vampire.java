@@ -10,7 +10,7 @@ public class Vampire extends Unit {
     @Override
     public void attack(Unit enemy) {
         System.out.println(getName() + " attacks " + enemy.getName());
-        enemy.takeDamage(state.getPhysicalDamage(), state.getMagicDamage());
+        enemy.takeDamage(state.getDamage());
         enemy.counterAttack(this);
         healthUp();
     }
@@ -18,15 +18,17 @@ public class Vampire extends Unit {
     @Override
     public void counterAttack(Unit attacker) {
         System.out.println(getName() + " counterAttacks " + attacker.getName());
-        attacker.takePhysicalDamage(state.getPhysicalDamage() / 2);
+        attacker.takeDamage(state.getDamage() / 2);
         attacker.takeMagicDamage(state.getMagicDamage() / 2);
         healthUp();
     }
 
     @Override
     public void healthUp() {
-        state.setHealthPoints(state.getHealthPoints() + state.getPhysicalDamage() / 2);
-        state.setHealthPoints(state.getHealthPoints() + state.getMagicDamage() / 2);
+        state.healthPoints = state.healthPoints + state.getDamage() / 2 + state.getMagicDamage() / 2;
+        if (state.healthPoints > maxHealthPoints) {
+            state.healthPoints = maxHealthPoints;
+        }
     }
 
 }

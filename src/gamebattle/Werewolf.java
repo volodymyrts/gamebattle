@@ -15,18 +15,22 @@ public class Werewolf extends Unit {
         if (human) {
             human = false;
             state.setHealthPoints(state.getHealthPoints()*2);
-            state.setPhysicalDamage(16);
+            state.damage = 16;
         } else {
             human = true;
             state.setHealthPoints(state.getHealthPoints()/2);
-            state.setPhysicalDamage(10);
+            state.damage = 10;
         }
         System.out.println("tranformed");
     }
 
     @Override
     public void takeMagicDamage(int magicDamage) {
-        super.takeMagicDamage(magicDamage*2);
+        if (!human) {
+            super.takeMagicDamage(magicDamage*2);
+        } else {
+            super.takeMagicDamage(magicDamage);
+        }
     }
 
 }

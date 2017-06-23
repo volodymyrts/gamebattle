@@ -2,14 +2,13 @@ package gamebattle;
 
 abstract class Unit {
 
-    public String name;
-    public State state;
-
-    private int MAX_HEALTH_POINTS;
+    protected String name;
+    protected State state;
+    protected int maxHealthPoints;
 
     Unit(int healthPoints, int damage, int magicDamage) {
         state = new State(healthPoints, damage, magicDamage);
-        MAX_HEALTH_POINTS = healthPoints;
+        maxHealthPoints = healthPoints;
     }
 
     public void transform(){};
@@ -24,36 +23,30 @@ abstract class Unit {
 
     public void attack(Unit enemy) {
         System.out.println(getName() + " attacks " + enemy.getName());
-        enemy.takeDamage(state.getPhysicalDamage(), state.getMagicDamage());
+        enemy.takeDamage(state.getDamage());
+        enemy.takeMagicDamage(state.getMagicDamage());
         enemy.counterAttack(this);
     }
 
     public void counterAttack(Unit attacker) {
         System.out.println(getName() + " counterAttacks " + attacker.getName());
-        attacker.takePhysicalDamage(state.getPhysicalDamage()/2);
+        attacker.takeDamage(state.getDamage()/2);
         attacker.takeMagicDamage(state.getMagicDamage()/2);
     }
 
-    public void takeDamage(int physicDamage, int magicDamage) {
-        takePhysicalDamage(physicDamage);
-        takeMagicDamage(magicDamage);
-    }
-
-    public void takePhysicalDamage(int physicalDamage) {
-        state.setHealthPoints(state.getHealthPoints() - physicalDamage);
-        System.out.println(getName() + " takes " + physicalDamage + " physic damage");
+    public void takeDamage(int damage) {
+        state.takeDamage(damage);
     }
 
     public void takeMagicDamage(int magicDamage) {
-        state.setHealthPoints(state.getHealthPoints() - magicDamage);
-        System.out.println(getName() + " takes " + magicDamage + " magic damage");
+        state.takeMagicDamage(magicDamage);
     }
 
     public void healthUp() {}
 
     @Override
     public String toString() {
-        return "Unit: " + name + ", hp=" + state.getHealthPoints() + ", pDmg=" + state.getPhysicalDamage() + ", mDmg=" + state.getMagicDamage();
+        return "Unit: " + name + ", hp=" + state.getHealthPoints() + ", dmg=" + state.getDamage() + ", mDmg=" + state.getMagicDamage();
     }
     
 }
