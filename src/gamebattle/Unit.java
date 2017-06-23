@@ -15,6 +15,10 @@ abstract class Unit {
         MAX_HEALTH_POINTS = healthPoints;
     }
 
+    public void transform(){
+
+    };
+
     public String getName() {
         return name;
     }

@@ -7,13 +7,13 @@ public class GameBattle {
         Unit soldier = new Soldier();
         Unit rogue = new Rogue();
         Unit berserker = new Berserker();
-        Unit werevolf = new Werevolf();
+        Unit werewolf = new Werewolf();
         Unit vampire = new Vampire();
 
         System.out.println(soldier);
         System.out.println(rogue);
         System.out.println(berserker);
-        System.out.println(werevolf);
+        System.out.println(werewolf);
         System.out.println(vampire);
 
         System.out.println();
@@ -28,9 +28,11 @@ public class GameBattle {
         System.out.println();
         rogue.attack(berserker);
         System.out.println();
-        werevolf.attack(soldier);
+        werewolf.attack(soldier);
         System.out.println();
-        werevolf.attack(berserker);
+        werewolf.transform();
+        System.out.println();
+        werewolf.attack(berserker);
         System.out.println();
 
         berserker.attack(rogue);
@@ -49,7 +51,7 @@ public class GameBattle {
         System.out.println(soldier);
         System.out.println(rogue);
         System.out.println(berserker);
-        System.out.println(werevolf);
+        System.out.println(werewolf);
         System.out.println(vampire);
 
     }
