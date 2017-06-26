@@ -14,11 +14,11 @@ public class Werewolf extends Unit {
     public void transform() {
         if (human) {
             human = false;
-            state.setHealthPoints(state.getHealthPoints()*2);
+            state.healthPoints = state.healthPoints*2;
             state.damage = 16;
         } else {
             human = true;
-            state.setHealthPoints(state.getHealthPoints()/2);
+            state.healthPoints = state.healthPoints/2;
             state.damage = 10;
         }
         System.out.println("tranformed");

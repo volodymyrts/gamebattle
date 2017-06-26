@@ -22,31 +22,58 @@ abstract class Unit {
     }
 
     public void attack(Unit enemy) {
-        System.out.println(getName() + " attacks " + enemy.getName());
-        enemy.takeDamage(state.getDamage());
-        enemy.takeMagicDamage(state.getMagicDamage());
-        enemy.counterAttack(this);
+        if (!enemy.isDead()) {
+            System.out.println(getName() + " attacks " + enemy.getName() + enemy.toString());
+            enemy.takeDamage(state.damage);
+            enemy.takeMagicDamage(state.magicDamage);
+            enemy.counterAttack(this);
+        } else {
+            System.out.println(getName() + " attacks dead" + enemy.getName());
+        }
     }
 
     public void counterAttack(Unit attacker) {
-        System.out.println(getName() + " counterAttacks " + attacker.getName());
-        attacker.takeDamage(state.getDamage()/2);
-        attacker.takeMagicDamage(state.getMagicDamage()/2);
+        if (!isDead()) {
+            System.out.println(getName() + " counterAttacks " + attacker.getName() + attacker.toString());
+            attacker.takeDamage(state.damage/2);
+            attacker.takeMagicDamage(state.magicDamage/2);
+        } else {
+            System.out.println(getName() + " is dead and can't counterAttack");
+        }
     }
 
     public void takeDamage(int damage) {
-        state.takeDamage(damage);
+        if (!isDead()) {
+            state.takeDamage(damage);
+            System.out.println(this.name + " takes " + damage + " damage (left " + state.healthPoints + " healthpoints)");
+        } else {
+            System.out.println(this.getName() + " is dead");
+        }
     }
 
     public void takeMagicDamage(int magicDamage) {
-        state.takeMagicDamage(magicDamage);
+        if (!isDead()) {
+            state.takeMagicDamage(magicDamage);
+            System.out.println(this.name + " takes " + magicDamage + " damage (left " + state.healthPoints + " healthpoints)");
+        } else {
+            System.out.println(this.getName() + " is dead");
+        }
     }
 
-    public void healthUp() {}
+    public void healthUp(int healthPoints) {}
+
+    public boolean isDead() {
+        return state.healthPoints == 0 ? true : false;
+    }
 
     @Override
     public String toString() {
-        return "Unit: " + name + ", hp=" + state.getHealthPoints() + ", dmg=" + state.getDamage() + ", mDmg=" + state.getMagicDamage();
+        if (!isDead()) {
+            return "Unit: " + name + ", hp=" + state.healthPoints + ", dmg=" + state.damage + ", mDmg=" + state.magicDamage;
+        } else {
+            return "Unit: " + name + " is dead, dmg=" + state.damage + ", mDmg=" + state.magicDamage;
+        }
+
     }
     
 }

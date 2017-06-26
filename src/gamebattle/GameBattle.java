@@ -54,6 +54,8 @@ public class GameBattle {
         System.out.println();
         vampire.attack(soldier);
         System.out.println();
+        vampire.attack(soldier);
+        System.out.println();
 //        berserker.attack(vampire);
 //        System.out.println();
 

@@ -12,28 +12,20 @@ public class State {
         this.magicDamage = magicDamage;
     }
 
-    public int getHealthPoints() {
-        return healthPoints;
-    }
-
-    public void setHealthPoints(int healthPoints) {
-        this.healthPoints = healthPoints;
-    }
-
-    public int getDamage() {
-        return damage;
-    }
-
-    public int getMagicDamage() {
-        return magicDamage;
-    }
-
     public void takeDamage(int damage) {
-        setHealthPoints(getHealthPoints() - damage);
+        if (healthPoints - damage <= 0) {
+            healthPoints = 0;
+        } else {
+            healthPoints = healthPoints - damage;
+        }
     }
 
     public void takeMagicDamage(int magicDamage) {
-        setHealthPoints(getHealthPoints() - magicDamage);
+        if (healthPoints - magicDamage <= 0) {
+            healthPoints = 0;
+        } else {
+            healthPoints = healthPoints - magicDamage;
+        }
     }
 
 }
