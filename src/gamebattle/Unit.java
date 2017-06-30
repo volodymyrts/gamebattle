@@ -22,31 +22,21 @@ abstract class Unit {
     }
 
     public void attack(Unit enemy) throws MyException {
-        if (!this.isDead() && !enemy.isDead()) {
-            System.out.println(getName() + " attacks " + enemy.getName() + " [" + getUnitInfo(enemy) + "]");
+        if (this.isDead() || enemy.isDead()) {
+            throw new MyException("attacker is dead or trying to attack dead enemy");
+        } else {
+            System.out.println(getName() + " attacks " + enemy.getName() + " " + getUnitInfo(enemy));
             enemy.takeDamage(state.damage, state.magicDamage);
             enemy.counterAttack(this);
-        } else {
-            try {
-                throw new MyException("attacker is dead or trying to attack dead enemy");
-            } catch (MyException e) {
-                System.out.println("Message: " + e.getMessage());
-            }
-            //System.out.println(getName() + " attacks dead" + enemy.getName());
         }
     }
 
-    public void counterAttack(Unit attacker) {
-        if (!this.isDead() && !attacker.isDead()) {
-            System.out.println(getName() + " counterAttacks " + attacker.getName() + " [" + getUnitInfo(attacker) + "]");
-            attacker.takeDamage(state.damage/2, state.magicDamage/2);
+    public void counterAttack(Unit attacker) throws MyException {
+        if (this.isDead() || attacker.isDead()) {
+            throw new MyException("attacker is dead or trying to attack dead enemy");
         } else {
-            try {
-                throw new MyException("attacker is dead or trying to counterAttack dead enemy");
-            } catch (MyException e) {
-                System.out.println("Message: " + e.getMessage());
-            }
-            //System.out.println(getName() + " is dead and can't counterAttack");
+            System.out.println(getName() + " counterAttacks " + attacker.getName() + " " + getUnitInfo(attacker));
+            attacker.takeDamage(state.damage/2, state.magicDamage/2);
         }
     }
 
