@@ -8,6 +8,9 @@ public class Berserker extends Unit {
     }
 
     @Override
-    public void takeMagicDamage(int damage) {}
+    public void takeDamage(int physicalDamage, int magicDamage) {
+        int physicalDamage1 = state.takePhysicalDamage(physicalDamage);
+        System.out.println(this.name + " takes " + physicalDamage1 + " damage (left " + state.healthPoints + " healthpoints)");
+    }
 
 }

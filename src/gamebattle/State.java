@@ -12,20 +12,18 @@ public class State {
         this.magicDamage = magicDamage;
     }
 
-    public void takeDamage(int damage) {
-        if (healthPoints - damage <= 0) {
+    public int takePhysicalDamage(int damage) {
+        if (healthPoints <= damage) {
             healthPoints = 0;
+            return damage - healthPoints;
         } else {
-            healthPoints = healthPoints - damage;
+            healthPoints -= damage;
+            return damage;
         }
     }
 
-    public void takeMagicDamage(int magicDamage) {
-        if (healthPoints - magicDamage <= 0) {
-            healthPoints = 0;
-        } else {
-            healthPoints = healthPoints - magicDamage;
-        }
+    public int takeMagicDamage(int damage) {
+        return takePhysicalDamage(damage);
     }
 
 }

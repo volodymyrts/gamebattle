@@ -7,58 +7,68 @@ public class Vampire extends Unit {
         name = "Vampire";
     }
 
-    @Override
-    public void attack(Unit enemy) {
-        if (!enemy.isDead()) {
-            System.out.println(getName() + " attacks " + enemy.getName());
-            int healthPointsBeforeAttack = enemy.state.healthPoints;
-            enemy.takeDamage(this.state.damage);
-            enemy.takeMagicDamage(this.state.magicDamage);
-            if (this.state.damage > healthPointsBeforeAttack) {
-                healthUp(healthPointsBeforeAttack/2);
-            } else {
-                healthUp(state.damage/2);
-            }
-            if (this.state.magicDamage > healthPointsBeforeAttack) {
-                healthUp(healthPointsBeforeAttack/2);
-            } else {
-                healthUp(state.magicDamage/2);
-            }
-            enemy.counterAttack(this);
-        } else {
-            System.out.println(getName() + " attacks dead " + enemy.getName());
-        }
-    }
+//    @Override
+//    public void attack(Unit enemy) throws MyException {
+//        if (!this.isDead() && !enemy.isDead()) {
+//            System.out.println(getName() + " attacks " + enemy.getName());
+//            int healthPointsBeforeAttack = enemy.state.healthPoints;
+//            enemy.takeDamage(this.state.damage);
+//            enemy.takeMagicDamage(this.state.magicDamage);
+//            if (this.state.damage > healthPointsBeforeAttack) {
+//                healthUpHalfDamageFromAttack(healthPointsBeforeAttack/2);
+//            } else {
+//                healthUpHalfDamageFromAttack(state.damage / 2);
+//            }
+//            if (this.state.magicDamage > healthPointsBeforeAttack) {
+//                healthUpHalfDamageFromAttack(healthPointsBeforeAttack / 2);
+//            } else {
+//                healthUpHalfDamageFromAttack(state.magicDamage / 2);
+//            }
+//            enemy.counterAttack(this);
+//        } else {
+//            try {
+//                throw new MyException("trying to attack dead enemy");
+//            }
+//            catch (MyException e) {
+//                System.out.println("Message: " + e.getMessage());
+//            }
+//            //System.out.println(getName() + " attacks dead " + enemy.getName());
+//        }
+//    }
 
-    @Override
-    public void counterAttack(Unit attacker) {
-        if (!isDead()) {
-            System.out.println(getName() + " counterAttacks " + attacker.getName());
-            int healthPointsBeforeAttack = attacker.state.healthPoints;
-            attacker.takeDamage(state.damage/2);
-            attacker.takeMagicDamage(state.magicDamage/2);
-            if (state.damage/2 > healthPointsBeforeAttack) {
-                healthUp(healthPointsBeforeAttack/2);
-            } else {
-                healthUp(state.damage/2);
-            }
-            if (this.state.magicDamage/2 > healthPointsBeforeAttack) {
-                healthUp(healthPointsBeforeAttack/2);
-            } else {
-                healthUp(state.magicDamage/2);
-            }
-        } else {
-            System.out.println(getName() + " is dead and can't counterAttack");
-        }
-    }
+//    @Override
+//    public void counterAttack(Unit attacker) {
+//        if (!this.isDead() && !attacker.isDead()) {
+//            System.out.println(getName() + " counterAttacks " + attacker.getName());
+//            attacker.takeDamage(state.magicDamage/2);
+//            if (state.damage/2 > healthPointsBeforeAttack) {
+//                healthUpHalfDamageFromAttack(healthPointsBeforeAttack/2);
+//            } else {
+//                healthUpHalfDamageFromAttack(state.damage/2);
+//            }
+//            if (this.state.magicDamage/2 > healthPointsBeforeAttack) {
+//                healthUpHalfDamageFromAttack(healthPointsBeforeAttack/2);
+//            } else {
+//                healthUpHalfDamageFromAttack(state.magicDamage/2);
+//            }
+//        } else {
+//            try {
+//                throw new MyException("attacker is dead or trying to counterAttack dead enemy");
+//            }
+//            catch (MyException e) {
+//                System.out.println("Message: " + e.getMessage());
+//            }
+//            //System.out.println(getName() + " is dead and can't counterAttack");
+//        }
+//    }
 
-    @Override
-    public void healthUp(int healthPoints1) {
-        System.out.println("healthUp(" + healthPoints1 + ")");
-        state.healthPoints = state.healthPoints + healthPoints1;
-        if (state.healthPoints > maxHealthPoints) {
-            state.healthPoints = maxHealthPoints;
-        }
-    }
+//    @Override
+//    public void healthUpHalfDamageFromAttack(int healthPoints) {
+//        System.out.println("healthUpHalfDamageFromAttack(" + healthPoints + ")");
+//        state.healthPoints += healthPoints;
+//        if (state.healthPoints > maxHealthPoints) {
+//            state.healthPoints = maxHealthPoints;
+//        }
+//    }
 
 }
