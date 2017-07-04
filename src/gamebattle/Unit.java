@@ -2,73 +2,60 @@ package gamebattle;
 
 abstract class Unit {
 
-    protected String name;
     protected State state;
-    protected int maxHealthPoints;
 
-    Unit(int healthPoints, int damage, int magicDamage) {
-        state = new State(healthPoints, damage, magicDamage);
-        maxHealthPoints = healthPoints;
+    Unit(String name, int healthPoints, int physicalDamage, int magicDamage, int maxHealthPoints) {
+        state = new State(name, healthPoints, physicalDamage, magicDamage, maxHealthPoints);
     }
 
-    public void transform(){};
+    public void werewolfChangeState(){};
 
     public String getName() {
-        return name;
+        return state.getName();
     }
 
     public void setName(String name) {
-        this.name = name;
+        state.setName(name);
     }
 
-    public void attack(Unit enemy) throws MyException {
-        if (this.isDead() || enemy.isDead()) {
-            throw new MyException("attacker is dead or trying to attack dead enemy");
-        } else {
-            System.out.println(getName() + " attacks " + enemy.getName() + " " + getUnitInfo(enemy));
-            enemy.takeDamage(state.damage, state.magicDamage);
-            enemy.counterAttack(this);
+    public void attack(Unit enemy) throws DeadUnitException, DeadEnemyException {
+        if (this.state.getHealthPoints() == 0) {
+            throw new DeadUnitException("Attacker is dead");
         }
-    }
-
-    public void counterAttack(Unit attacker) throws MyException {
-        if (this.isDead() || attacker.isDead()) {
-            throw new MyException("attacker is dead or trying to attack dead enemy");
-        } else {
-            System.out.println(getName() + " counterAttacks " + attacker.getName() + " " + getUnitInfo(attacker));
-            attacker.takeDamage(state.damage/2, state.magicDamage/2);
+        if (enemy.state.getHealthPoints() == 0) {
+            throw new DeadEnemyException("Trying to attack dead enemy");
         }
+        System.out.println(getName() + " attacks " + enemy.getName());
+        enemy.takePhysicalDamage(state.getPhysicalDamage());
+        //System.out.println(enemy.getName() + " takes " + state.getPhysicalDamage() + " damage " + enemy.toString());
+        enemy.counterAttack(this);
     }
 
-    public void takeDamage(int physicalDamage, int magicDamage) {
-        int physicalDamage1 = state.takePhysicalDamage(physicalDamage);
-        int magicDamage1 = state.takeMagicDamage(magicDamage);
-        int summDamage = physicalDamage1 + magicDamage1;
-        System.out.println(this.name + " takes " + summDamage + " points of damage " + getUnitInfo(this));
+    public void counterAttack(Unit attacker) throws DeadUnitException, DeadEnemyException {
+        if (this.state.getHealthPoints() == 0) {
+            throw new DeadUnitException("Attacker is dead");
+        }
+        if (attacker.state.getHealthPoints() == 0) {
+            throw new DeadEnemyException("Trying to attack dead enemy");
+        }
+        System.out.println(getName() + " counterAttacks " + attacker.getName());
+        attacker.takePhysicalDamage(state.getPhysicalDamage() / 2);
+        //System.out.println(attacker.getName() + " takes " + state.getPhysicalDamage()/2 + " damage " + attacker.toString());
+    }
+
+    public int takePhysicalDamage(int damage) throws DeadUnitException {
+        return state.takeDamage(damage);
+    }
+
+    public void takeMagicDamage(int magicDamage) throws DeadUnitException {
+        state.takeDamage(magicDamage);
     }
 
     public void healthUpHalfDamageFromAttack(int healthPoints) {}
 
-    public boolean isDead() {
-        return state.healthPoints == 0 ? true : false;
-    }
-
-    public String getUnitInfo(Unit unit) {
-        if (!unit.isDead()) {
-            return "[" + unit.name + ": " + unit.state.healthPoints + " healthpoints left]";
-        } else {
-            return "Unit " + unit.name + " is dead!";
-        }
-    }
-
     @Override
     public String toString() {
-        if (!isDead()) {
-            return "Unit: " + name + ", hp=" + state.healthPoints + ", dmg=" + state.damage + ", mDmg=" + state.magicDamage;
-        } else {
-            return "Unit: " + name + " is dead, dmg=" + state.damage + ", mDmg=" + state.magicDamage;
-        }
-
+        return "[" + state.getName() + ", hp=" + state.getHealthPoints() + ", maxhp=" + state.getMaxHealthPoints() + ", dmg=" + state.getPhysicalDamage() + ", mDmg=" + state.getMagicDamage() + "]";
     }
     
 }

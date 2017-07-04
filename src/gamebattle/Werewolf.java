@@ -2,28 +2,28 @@ package gamebattle;
 
 public class Werewolf extends Unit {
 
-    State alterState = new State(160, 16, 0);
+    State wolfState;
 
     Werewolf() {
-        super(80, 10, 0);
-        name = "Werewolf";
+        super("Werewolf-human", 80, 80, 10, 0);
+        wolfState = new StateWolf("Werewolf-wolf", 160, 160, 16, 0);
     }
 
     @Override
-    public void transform() {
+    public void werewolfChangeState() {
         State temp = state;
-        state = alterState;
-        alterState = temp;
-        System.out.println("tranformed");
+        wolfState.setHealthPoints(state.getHealthPoints() * wolfState.getMaxHealthPoints() / state.getMaxHealthPoints());
+        state = wolfState;
+        wolfState = temp;
+        System.out.println("Werewolf changed state");
     }
 
 //  in alterState (Werewolf state) takes double damage from magic
     @Override
-    public void takeDamage(int physicalDamage, int magicDamage) {
-        int physicalDamage1 = state.takePhysicalDamage(physicalDamage);
-        int magicDamage1 = state.takeMagicDamage(magicDamage*2);
-        int summDamage = physicalDamage1 + magicDamage1;
-        System.out.println(this.name + " takes " + summDamage + " damage (left " + state.healthPoints + " healthpoints)");
+    public void takeMagicDamage(int magicDamage) throws DeadUnitException {
+        if (state.getMaxHealthPoints() == 160) {
+            state.takeDamage(magicDamage*2);
+        }
     }
 
 }

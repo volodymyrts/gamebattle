@@ -3,72 +3,39 @@ package gamebattle;
 public class Vampire extends Unit {
 
     Vampire() {
-        super(110, 0, 12);
-        name = "Vampire";
+        super("Vampire", 110, 110, 0, 12);
     }
 
-//    @Override
-//    public void attack(Unit enemy) throws MyException {
-//        if (!this.isDead() && !enemy.isDead()) {
-//            System.out.println(getName() + " attacks " + enemy.getName());
-//            int healthPointsBeforeAttack = enemy.state.healthPoints;
-//            enemy.takeDamage(this.state.damage);
-//            enemy.takeMagicDamage(this.state.magicDamage);
-//            if (this.state.damage > healthPointsBeforeAttack) {
-//                healthUpHalfDamageFromAttack(healthPointsBeforeAttack/2);
-//            } else {
-//                healthUpHalfDamageFromAttack(state.damage / 2);
-//            }
-//            if (this.state.magicDamage > healthPointsBeforeAttack) {
-//                healthUpHalfDamageFromAttack(healthPointsBeforeAttack / 2);
-//            } else {
-//                healthUpHalfDamageFromAttack(state.magicDamage / 2);
-//            }
-//            enemy.counterAttack(this);
-//        } else {
-//            try {
-//                throw new MyException("trying to attack dead enemy");
-//            }
-//            catch (MyException e) {
-//                System.out.println("Message: " + e.getMessage());
-//            }
-//            //System.out.println(getName() + " attacks dead " + enemy.getName());
-//        }
-//    }
+    @Override
+    public void attack(Unit enemy) throws DeadUnitException, DeadEnemyException {
+        if (this.state.getHealthPoints() == 0) {
+            throw new DeadUnitException("Attacker is dead");
+        }
+        if (enemy.state.getHealthPoints() == 0) {
+            throw new DeadEnemyException("Trying to attack dead enemy");
+        }
+        System.out.println(getName() + " attacks " + enemy.getName());
+        enemy.takeMagicDamage(state.getMagicDamage());
+        healthUpHalfDamageFromAttack(state.getMagicDamage()/2);
+        enemy.counterAttack(this);
+    }
 
-//    @Override
-//    public void counterAttack(Unit attacker) {
-//        if (!this.isDead() && !attacker.isDead()) {
-//            System.out.println(getName() + " counterAttacks " + attacker.getName());
-//            attacker.takeDamage(state.magicDamage/2);
-//            if (state.damage/2 > healthPointsBeforeAttack) {
-//                healthUpHalfDamageFromAttack(healthPointsBeforeAttack/2);
-//            } else {
-//                healthUpHalfDamageFromAttack(state.damage/2);
-//            }
-//            if (this.state.magicDamage/2 > healthPointsBeforeAttack) {
-//                healthUpHalfDamageFromAttack(healthPointsBeforeAttack/2);
-//            } else {
-//                healthUpHalfDamageFromAttack(state.magicDamage/2);
-//            }
-//        } else {
-//            try {
-//                throw new MyException("attacker is dead or trying to counterAttack dead enemy");
-//            }
-//            catch (MyException e) {
-//                System.out.println("Message: " + e.getMessage());
-//            }
-//            //System.out.println(getName() + " is dead and can't counterAttack");
-//        }
-//    }
+    @Override
+    public void counterAttack(Unit attacker) throws DeadUnitException, DeadEnemyException {
+        if (this.state.getHealthPoints() == 0) {
+            throw new DeadUnitException("Attacker is dead");
+        }
+        if (attacker.state.getHealthPoints() == 0) {
+            throw new DeadEnemyException("Trying to attack dead enemy");
+        }
+        System.out.println(getName() + " counterAttacks " + attacker.getName());
+        attacker.takeMagicDamage(state.getMagicDamage() / 2);
+        healthUpHalfDamageFromAttack(state.getMagicDamage() / 4);
+    }
 
-//    @Override
-//    public void healthUpHalfDamageFromAttack(int healthPoints) {
-//        System.out.println("healthUpHalfDamageFromAttack(" + healthPoints + ")");
-//        state.healthPoints += healthPoints;
-//        if (state.healthPoints > maxHealthPoints) {
-//            state.healthPoints = maxHealthPoints;
-//        }
-//    }
+    @Override
+    public void healthUpHalfDamageFromAttack(int healthPoints) {
+        state.healthUp(healthPoints);
+    }
 
 }

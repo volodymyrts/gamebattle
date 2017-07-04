@@ -3,17 +3,19 @@ package gamebattle;
 class Rogue extends Unit {
 
     Rogue() {
-        super(80, 10, 0);
-        name = "Rogue";
+        super("Rogue", 80, 80, 10, 0);
     }
 
-    public void attack(Unit enemy) throws MyException {
-        if (this.isDead() || enemy.isDead()) {
-            throw new MyException("attacker is dead or trying to attack dead enemy");
-        } else {
-            System.out.println(getName() + " attacks " + enemy.getName() + getUnitInfo(enemy));
-            enemy.takeDamage(state.damage, state.magicDamage);
+    @Override
+    public void attack(Unit enemy) throws DeadUnitException, DeadEnemyException {
+        if (this.state.getHealthPoints() == 0) {
+            throw new DeadUnitException("Attacker is dead");
         }
+        if (enemy.state.getHealthPoints() == 0) {
+            throw new DeadEnemyException("Trying to attack dead enemy");
+        }
+        System.out.println(getName() + " attacks " + enemy.getName());
+        enemy.takePhysicalDamage(state.getPhysicalDamage());
     }
 
 }

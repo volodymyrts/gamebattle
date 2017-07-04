@@ -2,72 +2,52 @@ package gamebattle;
 
 public class GameBattle {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws DeadUnitException, DeadEnemyException {
 
         Unit soldier = new Soldier();
         Unit rogue = new Rogue();
         Unit berserker = new Berserker();
         Unit werewolf = new Werewolf();
         Unit vampire = new Vampire();
+        Unit wizard = new Wizard();
 
         System.out.println(soldier);
         System.out.println(rogue);
         System.out.println(berserker);
         System.out.println(werewolf);
         System.out.println(vampire);
+        System.out.println(wizard);
 
         System.out.println();
-        System.out.println("--- BATTLE BEGINS ---");
-
+        System.out.println("--- BATTLE BEGINS ---\n");
 
         soldier.attack(rogue);
-        System.out.println();
         rogue.attack(soldier);
-        System.out.println();
         soldier.attack(berserker);
-        System.out.println();
         rogue.attack(berserker);
-        System.out.println();
         werewolf.attack(soldier);
-        System.out.println();
-
         System.out.println(werewolf);
-        werewolf.transform();
+        werewolf.werewolfChangeState();
         System.out.println(werewolf);
-
-        System.out.println();
         werewolf.attack(berserker);
-        System.out.println();
-
         berserker.attack(rogue);
-        System.out.println();
         berserker.attack(soldier);
-        System.out.println();
-
         vampire.attack(soldier);
-        System.out.println();
+        vampire.attack(werewolf);
         vampire.attack(soldier);
-        System.out.println();
+        vampire.attack(berserker);
         vampire.attack(soldier);
-        System.out.println();
         vampire.attack(soldier);
-        System.out.println();
         vampire.attack(soldier);
-        System.out.println();
         vampire.attack(soldier);
-        System.out.println();
         vampire.attack(soldier);
-        System.out.println();
-        vampire.attack(soldier);
-        System.out.println();
-        vampire.attack(soldier);
-        System.out.println();
         berserker.attack(vampire);
-        System.out.println();
 
+        werewolf.werewolfChangeState();
+        System.out.println(werewolf);
+        vampire.attack(werewolf);
 
-
-        System.out.println("--- END OF BATTLE ---");
+        System.out.println("--- END OF BATTLE ---\n");
         System.out.println();
 
         System.out.println(soldier);
@@ -75,6 +55,7 @@ public class GameBattle {
         System.out.println(berserker);
         System.out.println(werewolf);
         System.out.println(vampire);
+        System.out.println(wizard);
 
     }
     

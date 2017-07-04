@@ -3,14 +3,12 @@ package gamebattle;
 public class Berserker extends Unit {
     
     Berserker() {
-        super(110, 16, 0);
-        name = "Berserker";
+        super("Berserker", 110, 110, 16, 0);
     }
 
     @Override
-    public void takeDamage(int physicalDamage, int magicDamage) {
-        int physicalDamage1 = state.takePhysicalDamage(physicalDamage);
-        System.out.println(this.name + " takes " + physicalDamage1 + " damage (left " + state.healthPoints + " healthpoints)");
+    public void takeMagicDamage(int damage) {
+        System.out.println("I have immunitet to magic damage!");
     }
 
 }
