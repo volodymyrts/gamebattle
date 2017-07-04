@@ -40,10 +40,6 @@ public class State {
         return magicDamage;
     }
 
-    public void setHealthPoints(int healthPoints) {
-        this.healthPoints = healthPoints;
-    }
-
     public int takeDamage(int damage) {
         if (healthPoints <= damage) {
             healthPoints = 0;
@@ -57,6 +53,7 @@ public class State {
     }
 
     public void healthUp(int healthPoints) {
+        //TODO: bad code
         if (maxHealthPoints - this.healthPoints < healthPoints) {
             System.out.println("healthUP " + (maxHealthPoints - this.healthPoints) + " healthpoints (now max level of HealthPoints)");
             this.healthPoints = maxHealthPoints;

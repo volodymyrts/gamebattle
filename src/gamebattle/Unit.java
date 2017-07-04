@@ -43,15 +43,13 @@ abstract class Unit {
         //System.out.println(attacker.getName() + " takes " + state.getPhysicalDamage()/2 + " damage " + attacker.toString());
     }
 
-    public int takePhysicalDamage(int damage) throws DeadUnitException {
-        return state.takeDamage(damage);
+    public void takePhysicalDamage(int damage) throws DeadUnitException {
+        state.takeDamage(damage);
     }
 
     public void takeMagicDamage(int magicDamage) throws DeadUnitException {
         state.takeDamage(magicDamage);
     }
-
-    public void healthUpHalfDamageFromAttack(int healthPoints) {}
 
     @Override
     public String toString() {
