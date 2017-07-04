@@ -12,11 +12,7 @@ public class Werewolf extends Unit {
     @Override
     public void werewolfChangeState() {
         State temp = state;
-        if (state.getMaxHealthPoints() == 80) {
-            alterState.healthUp(state.getHealthPoints() * alterState.getMaxHealthPoints() / state.getMaxHealthPoints());
-        } else {
-            alterState.healthUp(-state.getHealthPoints() * alterState.getMaxHealthPoints() / state.getMaxHealthPoints());
-        }
+        alterState.update(state);
         state = alterState;
         alterState = temp;
         System.out.println("Werewolf changed state");

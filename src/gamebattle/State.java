@@ -3,7 +3,7 @@ package gamebattle;
 public class State {
 
     private String name;
-    private int healthPoints;
+    protected int healthPoints;
     private int maxHealthPoints;
     private int physicalDamage;
     private int magicDamage;
@@ -61,6 +61,10 @@ public class State {
             System.out.println("healthUP " + healthPoints + " healthpoints");
             this.healthPoints += healthPoints;
         }
+    }
+
+    public void update(State state) {
+        this.healthPoints = state.getHealthPoints() * 2;
     }
 
 }

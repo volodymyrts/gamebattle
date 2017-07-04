@@ -8,8 +8,6 @@ abstract class Unit {
         state = new State(name, healthPoints, physicalDamage, magicDamage, maxHealthPoints);
     }
 
-    public void werewolfChangeState(){};
-
     public String getName() {
         return state.getName();
     }
@@ -43,17 +41,18 @@ abstract class Unit {
         //System.out.println(attacker.getName() + " takes " + state.getPhysicalDamage()/2 + " damage " + attacker.toString());
     }
 
-    public void takePhysicalDamage(int damage) throws DeadUnitException {
-        state.takeDamage(damage);
+    public int takePhysicalDamage(int damage) throws DeadUnitException {
+        return state.takeDamage(damage);
     }
 
-    public void takeMagicDamage(int magicDamage) throws DeadUnitException {
-        state.takeDamage(magicDamage);
+    public int takeMagicDamage(int magicDamage) throws DeadUnitException {
+        return state.takeDamage(magicDamage);
     }
 
     @Override
     public String toString() {
         return "[" + state.getName() + ", hp=" + state.getHealthPoints() + ", maxhp=" + state.getMaxHealthPoints() + ", dmg=" + state.getPhysicalDamage() + ", mDmg=" + state.getMagicDamage() + "]";
     }
-    
+
+    public void werewolfChangeState() {}
 }

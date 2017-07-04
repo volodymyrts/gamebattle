@@ -7,8 +7,9 @@ public class Berserker extends Unit {
     }
 
     @Override
-    public void takeMagicDamage(int damage) {
+    public int takeMagicDamage(int magicDamage) {
         System.out.println("I have immunitet to magic damage!");
+        return 0;
     }
 
 }
