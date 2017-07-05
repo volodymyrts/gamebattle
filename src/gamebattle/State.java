@@ -3,12 +3,11 @@ package gamebattle;
 public class State {
 
     private String name;
-    protected int healthPoints;
+    private int healthPoints;
     private int maxHealthPoints;
     private int physicalDamage;
     private int magicDamage;
 
-    State(){}
     State(String name, int healthPoints, int maxHealthPoints, int physicalDamage, int magicDamage) {
         this.name = name;
         this.healthPoints = healthPoints;

@@ -9,7 +9,13 @@ public class Werewolf extends Unit {
 
     public void changeState() {
         State temp = state;
-        otherState.healthPoints = state.getHealthPoints() * otherState.getMaxHealthPoints() / state.getMaxHealthPoints();
+
+        if (state.getMaxHealthPoints() == 80) {
+            otherState.healthUp(state.getHealthPoints());
+        } else {
+            otherState.takeDamage(state.getHealthPoints() / 2);
+        }
+
         state = otherState;
         otherState = temp;
         System.out.println("Werewolf changed state");
