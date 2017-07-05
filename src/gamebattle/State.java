@@ -41,30 +41,36 @@ public class State {
     }
 
     public int takeDamage(int damage) {
-        if (healthPoints <= damage) {
-            healthPoints = 0;
-            System.out.println("takes " + (damage - healthPoints) + " damage");
-            return damage - healthPoints;
+        if (damage < 0) {
+            System.out.println("damage < 0");
+            return 0;
         } else {
-            healthPoints -= damage;
-            System.out.println("takes " + damage + " damage");
-            return damage;
+            if (healthPoints <= damage) {
+                healthPoints = 0;
+                System.out.println("takes " + (damage - healthPoints) + " damage");
+                return damage - healthPoints;
+            } else {
+                healthPoints -= damage;
+                System.out.println("takes " + damage + " damage");
+                return damage;
+            }
         }
+
     }
 
     public void healthUp(int healthPoints) {
-        //bad code TODO: good code
-        if (maxHealthPoints - this.healthPoints < healthPoints) {
-            System.out.println("healthUP " + (maxHealthPoints - this.healthPoints) + " healthpoints (now max level of HealthPoints)");
-            this.healthPoints = maxHealthPoints;
+        //bad code TODO: write good code
+        if (healthPoints < 0) {
+            System.out.println("trying to healthUp with negative healthPoints");
         } else {
-            System.out.println("healthUP " + healthPoints + " healthpoints");
-            this.healthPoints += healthPoints;
+            if (maxHealthPoints - this.healthPoints < healthPoints) {
+                System.out.println("healthUP " + (maxHealthPoints - this.healthPoints) + " healthpoints (now max level of HealthPoints)");
+                this.healthPoints = maxHealthPoints;
+            } else {
+                System.out.println("healthUP " + healthPoints + " healthpoints");
+                this.healthPoints += healthPoints;
+            }
         }
-    }
-
-    public void update(State state) {
-        this.healthPoints = state.getHealthPoints() * 2;
     }
 
 }

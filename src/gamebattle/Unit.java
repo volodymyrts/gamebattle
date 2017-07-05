@@ -54,5 +54,5 @@ abstract class Unit {
         return "[" + state.getName() + ", hp=" + state.getHealthPoints() + ", maxhp=" + state.getMaxHealthPoints() + ", dmg=" + state.getPhysicalDamage() + ", mDmg=" + state.getMagicDamage() + "]";
     }
 
-    public void werewolfChangeState() {}
+    public void changeState() {}
 }
