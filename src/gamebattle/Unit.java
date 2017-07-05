@@ -42,11 +42,11 @@ abstract class Unit {
     }
 
     public int takePhysicalDamage(int damage) throws DeadUnitException {
-        return state.takeDamage(damage);
+        return state.takePhysicalDamage(damage);
     }
 
     public int takeMagicDamage(int magicDamage) throws DeadUnitException {
-        return state.takeDamage(magicDamage);
+        return state.takeMagicDamage(magicDamage);
     }
 
     @Override

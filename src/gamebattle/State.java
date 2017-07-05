@@ -8,6 +8,7 @@ public class State {
     private int physicalDamage;
     private int magicDamage;
 
+    State(){}
     State(String name, int healthPoints, int maxHealthPoints, int physicalDamage, int magicDamage) {
         this.name = name;
         this.healthPoints = healthPoints;
@@ -38,6 +39,14 @@ public class State {
 
     public int getMagicDamage() {
         return magicDamage;
+    }
+
+    public int takePhysicalDamage(int physicalDamage) {
+        return takeDamage(physicalDamage);
+    }
+
+    public int takeMagicDamage(int magicDamage) {
+        return takeDamage(magicDamage);
     }
 
     public int takeDamage(int damage) {
