@@ -15,8 +15,7 @@ public class Vampire extends Unit {
             throw new DeadEnemyException("Trying to attack dead enemy");
         }
         System.out.println(getName() + " attacks " + enemy.getName());
-        enemy.takeMagicDamage(state.getMagicDamage());
-        state.healthUp(state.takeDamage(state.getMagicDamage() / 2));
+        state.healthUp(enemy.takeMagicDamage(state.getMagicDamage()) / 2);
         enemy.counterAttack(this);
     }
 
@@ -29,8 +28,7 @@ public class Vampire extends Unit {
             throw new DeadEnemyException("Trying to attack dead enemy");
         }
         System.out.println(getName() + " counterAttacks " + attacker.getName());
-        attacker.takeMagicDamage(state.getMagicDamage() / 2);
-        state.healthUp(state.takeDamage(state.getMagicDamage() / 2));
+        state.healthUp(attacker.takeMagicDamage(state.getMagicDamage() / 2) / 2);
     }
 
 }

@@ -53,7 +53,7 @@ public class State {
     }
 
     public void healthUp(int healthPoints) {
-        //TODO: bad code
+        //bad code TODO: good code
         if (maxHealthPoints - this.healthPoints < healthPoints) {
             System.out.println("healthUP " + (maxHealthPoints - this.healthPoints) + " healthpoints (now max level of HealthPoints)");
             this.healthPoints = maxHealthPoints;

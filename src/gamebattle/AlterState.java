@@ -7,7 +7,7 @@ public class AlterState extends State {
     }
 
     public void takeMagicDamage(int magicDamage) throws DeadUnitException {
-        takeDamage(magicDamage * 2);
+        takeDamage(magicDamage / 2);
     }
 
     @Override
