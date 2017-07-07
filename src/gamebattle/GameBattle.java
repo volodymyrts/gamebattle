@@ -18,7 +18,7 @@ public class GameBattle {
         System.out.println(vampire);
 //        System.out.println(wizard);
 
-//        vampire.takeMagicDamage(20);
+        werewolf.takeMagicDamage(20);
 
         System.out.println();
         System.out.println("--- BATTLE BEGINS ---\n");

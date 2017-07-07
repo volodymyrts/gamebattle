@@ -48,6 +48,12 @@ public class State {
         return takeDamage(magicDamage);
     }
 
+//    public int takeDamage(int damage) {
+//        healthPoints -= damage;
+//        System.out.println("takes " + damage + " damage");
+//        return damage;
+//    }
+
     public int takeDamage(int damage) {
         if (damage < 0) {
             System.out.println("damage < 0");
@@ -63,8 +69,17 @@ public class State {
                 return damage;
             }
         }
-
     }
+
+//    public void healthUp(int healthPoints) {
+//        if (maxHealthPoints - this.healthPoints < healthPoints) {
+//            System.out.println("healthUP " + (maxHealthPoints - this.healthPoints) + " healthpoints (now max level of HealthPoints)");
+//            this.healthPoints = maxHealthPoints;
+//        } else {
+//            System.out.println("healthUP " + healthPoints + " healthpoints");
+//            this.healthPoints += healthPoints;
+//        }
+//    }
 
     public void healthUp(int healthPoints) {
         //bad code TODO: write good code
